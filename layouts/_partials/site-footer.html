@@ -1,0 +1,15 @@
+<footer class="{{ .Site.Params.background_color_class | compare.Default " bg-black" }} w-100 pv4 ph3 ph4-ns"
+  role="contentinfo">
+  <div class="flex flex-column flex-row-l items-center-l justify-between-l center mw8">
+    {{ with .Site.Params.description }}
+    <p class="f6 white-60 mv0 tc tl-l measure-wide-l">{{ . }}</p>
+    {{ end }}
+    <div class="mt3 mt0-l">{{ partials.IncludeCached "social/follow.html" . }}</div>
+  </div>
+  <div class="mw8 center mt3 pt3 bt b--black-10 tc tl-l">
+    <a class="f6 fw4 hover-white white-50 no-underline" href="{{ .Site.Home.Permalink }}">
+      &copy; {{ with .Site.Copyright | compare.Default .Site.Title }} {{ . | safe.HTML }} {{ now.Format "2006"}} {{ end
+      }}
+    </a>
+  </div>
+</footer>

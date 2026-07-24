@@ -1,0 +1,32 @@
+{{/*
+author-card.html — a small "about the author" profile block.
+
+Reads from [params.author_profile] in hugo.toml (name / image / bio).
+Renders nothing if that config isn't set, so it's safe to include
+unconditionally from home.html.
+*/}}
+{{ with site.Params.author_profile }}
+<section class="author-card mw7 center mt5 mb2">
+    <div class="flex flex-column flex-row-ns items-center">
+        {{ with .image }}
+        <img src="{{ urls.RelURL . }}" alt="{{ $.Site.Params.author_profile.name | compare.Default $.Site.Title }}"
+            class="author-card-img" />
+        {{ end }}
+        <div class="author-card-body">
+            {{ with .name }}
+            <p class="author-card-eyebrow">About the maker</p>
+            <h3 class="author-card-name athelas">{{ . }}</h3>
+            {{ end }}
+            {{ with .bio }}
+            <p class="author-card-bio">{{ . }}</p>
+            {{ end }}
+            {{ with site.Params.ananke.social.instagram }}
+            <a href="https://www.instagram.com/{{ .username }}/" target="_blank" rel="noopener"
+                class="author-card-link">
+                Follow along on Instagram &rarr;
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

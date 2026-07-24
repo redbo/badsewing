@@ -1,4 +1,54 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "ananke"
+baseURL = 'https://www.badsewing.com/'
+locale = 'en-us'
+title = 'Bad Sewing'
+theme = 'ananke'
+
+copyright = 'Bad Sewing'
+
+[params]
+  description = "Gloriously imperfect stitches, questionable seam allowances, and the honest chaos of learning to sew."
+  author = "Bad Sewing"
+  favicon = "images/badsewing-1.png"
+  site_logo = "images/badsewing-1.png"
+
+  # Tachyons utility overrides fed into the theme templates so the whole
+  # site renders in the dark palette defined in assets/ananke/css/custom.css
+  background_color_class = "bg-ink"
+  body_classes = "sans-serif bg-ink"
+  text_color = "moon-gray"
+  header_section_class = "tc-l pv5 pv6-l ph3 ph4-ns"
+
+  [params.author_profile]
+    name = "Bad Sewing"
+    image = "images/image0-1024x768.webp"
+    bio = "Self-taught, mostly self-inflicted. I sew things badly, on purpose and by accident, and share the wreckage so you feel better about yours."
+
+[params.ananke]
+  show_recent_posts = true
+  show_categories = true
+  copy_code = true
+  custom_css = ["custom.css"]
+
+  [params.ananke.home]
+    content_alignment = "center"
+
+  [params.ananke.social]
+    instagram = { username = "badsewing" }
+
+    [params.ananke.social.follow]
+      new_window_icon = false
+      networks = ["instagram"]
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+  [[menu.main]]
+    name = "Blog"
+    pageRef = "/posts"
+    weight = 20
+  [[menu.main]]
+    name = "Categories"
+    pageRef = "/categories"
+    weight = 30

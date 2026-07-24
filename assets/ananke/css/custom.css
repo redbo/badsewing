@@ -1,0 +1,326 @@
+/* ==========================================================================
+   Bad Sewing — dark theme
+   Loaded last (see [params.ananke] custom_css in hugo.toml) so these rules
+   win over the theme's Tachyons defaults without having to fork every
+   template. Where possible we re-skin the existing Tachyons utility
+   classes the theme already emits (bg-white, dark-gray, b--black-10, ...)
+   instead of duplicating markup.
+   ========================================================================== */
+
+:root {
+    --ink: #131418;
+    --surface: #1d1e24;
+    --surface-raised: #26272e;
+    --border: rgba(255, 255, 255, 0.11);
+    --text: #f2f0ec;
+    --text-dim: #b7b3c2;
+    --accent: #ff4d6d;
+    --accent-2: #ffd166;
+    --font-display: "Fraunces", "Athelas", ui-serif, serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ---- base ---------------------------------------------------------- */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.bg-ink,
+.bg-ink {
+    background-color: var(--ink) !important;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text);
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--ink);
+}
+
+a {
+    color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+}
+
+.nested-links a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.athelas {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* ---- header / hero -------------------------------------------------- */
+
+header .cover.bg-top,
+header .cover.bg-center {
+    background-size: cover;
+    position: relative;
+}
+
+header .bg-black-60 {
+    background: linear-gradient(180deg,
+            rgba(19, 20, 24, 0.55) 0%,
+            rgba(19, 20, 24, 0.72) 55%,
+            rgba(19, 20, 24, 0.94) 100%) !important;
+}
+
+.site-eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    border: 1px solid rgba(255, 209, 102, 0.4);
+    border-radius: 999px;
+    padding: 0.35em 1em;
+    margin-bottom: 1.25rem;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1.75rem;
+    padding: 0.75em 1.6em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--ink) !important;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 8px 24px -8px rgba(255, 77, 109, 0.55);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(255, 77, 109, 0.7);
+}
+
+/* ---- navigation ------------------------------------------------------ */
+
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    backdrop-filter: saturate(140%) blur(10px);
+    background: rgba(10, 10, 13, 0.7);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-nav .site-logo-img {
+    height: 2.5rem;
+    width: auto;
+    max-width: none;
+    border-radius: 8px;
+    display: block;
+}
+
+.site-nav a.nav-link {
+    position: relative;
+    color: var(--text-dim) !important;
+}
+
+.site-nav a.nav-link:hover {
+    color: var(--text) !important;
+}
+
+.site-nav a.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 2px;
+    background: var(--accent);
+    transition: right 0.2s ease;
+}
+
+.site-nav a.nav-link:hover::after {
+    right: 0;
+}
+
+/* header rendered without a featured image (e.g. list/taxonomy pages) */
+header>div.bg-black,
+header>div.bg-ink {
+    background-color: var(--ink) !important;
+}
+
+/* ---- post cards -------------------------------------------------------
+   home.html / list.html wrap each summary in a bare `bg-white` div, and
+   the summary partials hardcode `dark-gray` / `b--black-10`. Re-skin those
+   utility classes so the cards read as dark surfaces without forking the
+   layout templates. */
+
+.bg-white {
+    background-color: var(--surface) !important;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.bg-white:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 77, 109, 0.4);
+}
+
+.bg-white .pv4,
+.bg-white .pv3 {
+    padding: 1.25rem;
+}
+
+.dark-gray {
+    color: var(--text) !important;
+}
+
+.mid-gray {
+    color: var(--text-dim) !important;
+}
+
+.b--black-10,
+.black-10 {
+    border-color: var(--border) !important;
+}
+
+.bg-light-gray {
+    background-color: var(--surface-raised) !important;
+}
+
+.ba.b--moon-gray {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 999px !important;
+    color: var(--text) !important;
+    padding: 0.4em 1em !important;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.hover-bg-moon-gray:hover {
+    background-color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    color: var(--ink) !important;
+}
+
+.moon-gray {
+    color: var(--text-dim);
+}
+
+article img,
+.bg-white img {
+    border-radius: 0;
+}
+
+/* ---- author profile card ------------------------------------------------ */
+
+.author-card {
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.author-card-img {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    flex-shrink: 0;
+}
+
+.author-card-body {
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
+.author-card-eyebrow {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+
+.author-card-name {
+    margin: 0.15rem 0 0.6rem;
+    font-size: 1.5rem;
+    color: var(--text);
+}
+
+.author-card-bio {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+}
+
+.author-card-link {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.author-card-link:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 60em) {
+    .author-card-body {
+        margin-top: 0;
+        margin-left: 2rem;
+        text-align: left;
+    }
+}
+
+/* ---- footer ------------------------------------------------------------ */
+
+footer.bg-black,
+footer.bg-ink {
+    background-color: var(--ink) !important;
+    border-top: 1px solid var(--border);
+}
+
+footer a {
+    color: var(--text-dim);
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+/* ---- social icons -------------------------------------------------------- */
+
+.ananke-socials a {
+    color: var(--text-dim);
+}
+
+.ananke-socials a:hover {
+    color: var(--accent);
+}
+
+/* ---- misc ---------------------------------------------------------------- */
+
+.code-block {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
