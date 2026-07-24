@@ -3,6 +3,7 @@
         <a href="{{ .Site.Home.RelPermalink }}" class="f3 fw2 hover-white white-90 dib no-underline flex items-center">
             {{ with .Site.Params.site_logo }}
             <img src="{{ urls.RelURL . }}" class="site-logo-img" alt="{{ $.Site.Title }}" />
+            <span class="site-title-text">{{ $.Site.Title }}</span>
             {{ else }}
             {{ .Site.Title }}
             {{ end }}
@@ -10,11 +11,10 @@
         <div class="flex-l items-center">
             {{ partials.Include "i18nlist.html" . }}
             {{ if .Site.Menus.main }}
-            <ul class="{{ compare.Conditional (compare.Eq $.Site.Language.Direction " rtl") "pr0 ml3" "pl0 mr3" }}">
+            <ul class="{{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pr0 ml3" "pl0 mr3" }}">
                 {{ range .Site.Menus.main }}
-                <li class="list f5 f4-ns fw4 dib {{ compare.Conditional (compare.Eq $.Site.Language.Direction "
-                    rtl") "pl3" "pr3" }}">
-                    <a class="nav-link no-underline" href="{{ .URL }}" title="{{ lang.Translate " pageTitle" . }}">
+                <li class="list f5 f4-ns fw4 dib {{ compare.Conditional (compare.Eq $.Site.Language.Direction "rtl") "pl3" "pr3" }}">
+                    <a class="nav-link no-underline" href="{{ .URL }}" title="{{ lang.Translate "pageTitle" . }}">
                         {{ .Name }}
                     </a>
                 </li>

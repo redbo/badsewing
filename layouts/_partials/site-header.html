@@ -11,7 +11,7 @@
       {{ if .IsHome }}
       <span class="site-eyebrow">Handmade &amp; a little unhinged</span>
       {{ end }}
-      <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title athelas">
+      <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title athelas site-title">
         {{ .Title | compare.Default .Site.Title }}
       </h1>
       {{ with .Params.description }}
@@ -20,7 +20,7 @@
       </h2>
       {{ end }}
       {{ if .IsHome }}
-      <a href="{{ (.Site.GetPage " section" "posts" ).RelPermalink | compare.Default "/posts/" }}" class="hero-cta">
+      <a href="{{ (.Site.GetPage "section" "posts").RelPermalink | compare.Default "/posts/" }}" class="hero-cta">
         Read the blog
       </a>
       {{ end }}
@@ -29,11 +29,11 @@
 </header>
 {{ else }}
 <header>
-  <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | compare.Default " bg-black" }}">
+  <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | compare.Default "bg-black" }}">
     {{ partials.Include "site-navigation.html" . }}
     {{ $header_section_class := .Param "header_section_class" | compare.Default "tc-l pv3 ph3 ph4-ns" }}
     <div class="{{ $header_section_class }}">
-      <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title athelas">
+      <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title athelas site-title">
         {{ .Title | compare.Default .Site.Title }}
       </h1>
       {{ with .Params.description }}
